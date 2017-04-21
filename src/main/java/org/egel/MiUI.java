@@ -76,7 +76,7 @@ public void malo(){
     pantallaSuperior.addComponent(botonExamen);
     pantallaSuperior.addComponent(botonAdministracion);
 
-    Label labelPrincipal=new Label("Bienvenidos al emulador CENEVAL,  al iniciar un examen se te pedirá un área a evaluar," +
+    Label labelPrincipal=new Label("Bienvenidos al emulador EGEL,  al iniciar un examen se te pedirá un área a evaluar," +
             " a continuación se muestran las áreas del EGEL");
     labelPrincipal.setStyleName(ValoTheme.LABEL_H3);
     labelPrincipal.setWidth("100%");
