@@ -193,6 +193,8 @@ getPage().getStyles().add(".v-grid-row {color: blue;height:300px;}");
         temitas.add(new Tema("B2. Desarrollo de sistema "));
         temitas.add(new Tema("B3. Implantación de sistemas"));
         temitas.add(new Tema("CI1. Gestión de la función informática "));
+        temitas.add(new Tema("C1. Administración de proyectos de tecnologías de información"));
+        temitas.add(new Tema("C2. Control de calidad de proyectos de tecnologías de información"));
         selectTema.setItems(temitas);
         selectTema.setItemCaptionGenerator(Tema::getNombre);
         selectTema.setWidth("100%");

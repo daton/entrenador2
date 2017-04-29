@@ -19,42 +19,33 @@ public class EntrenadorApplication {
 		SpringApplication.run(EntrenadorApplication.class, args);
 		// Recipient's email ID needs to be mentioned.
 
-		/*
-		final String username = "egel@sierraguadalupe.org";
-		final String password = "ExamenEgel2017";
+try{
+		final String fromEmail = "egel@sierraguadalupe.org";
+		final String password = "egel2017";
 
-		Properties props = new Properties();
-		props.put("mail.smtp.auth", "true");
-		props.put("mail.smtp.starttls.enable", "true");
+	final String toEmail = "rapidclimate@gmail.com"; // can be any email id
 
-		//props.put("mail.smtp.host", "smtp.gmail.com");
-		props.put("mail.smtp.host", "mail.sierraguadalupe.org");
-		props.put("mail.smtp.port", "587");
+	System.out.println("TLSEmail Start");
+	Properties props = new Properties();
+	props.put("mail.smtp.host", "mail.sierraguadalupe.org"); //SMTP Host
+	props.put("mail.smtp.port", "587"); //TLS Port
+	props.put("mail.smtp.auth", "true"); //enable authentication
+	props.put("mail.smtp.starttls.enable", "true"); //enable STARTTLS
 
-		Session session = Session.getInstance(props,
-				new javax.mail.Authenticator() {
-					protected PasswordAuthentication getPasswordAuthentication() {
-						return new PasswordAuthentication(username, password);
-					}
-				});
+	//create Authenticator object to pass in Session.getInstance argument
+	Authenticator auth = new Authenticator() {
+		//override the getPasswordAuthentication method
+		protected PasswordAuthentication getPasswordAuthentication() {
+			return new PasswordAuthentication(fromEmail, password);
+		}
+	};
+//	Session session = Session.getInstance(props, auth);
 
-		try {
-
-			Message message = new MimeMessage(session);
-			message.setFrom(new InternetAddress("egel@sierraguadalupe.org", "Egel Examen"));
-
-			message.setRecipients(Message.RecipientType.TO,
-					InternetAddress.parse("rapidclimate@outlook.com"));
-			message.setSubject("Examen Egel");
-			message.setText("Dear Mail Crawler,"
-					+ "\n\n No spam to my email, please!");
-
-			Transport.send(message);
-
-			System.out.println("Done");
+	//EmailUtil.sendEmail(session, toEmail,"Egel Examen", "Examen");
 
 		} catch (Exception e) {
-			throw new RuntimeException(e);
+		//	System.out.println("Hubo un error "+e.getMessage());
+		//	throw new RuntimeException(e);
 		}
 
 
@@ -65,6 +56,8 @@ public class EntrenadorApplication {
 		String asunto="Tienes cara de perro";
 		String personal="Juan Carlos Campos";
 		try{
+
+			/*
 			// String de=request.getParameter("de");
 			String host="localhost";
 			// String para=request.getParameter("para");
@@ -121,7 +114,6 @@ public class EntrenadorApplication {
 //mp.addBodyPart(mbp3);
 
 
-
 // add the Multipart to the message
 			msg.setContent(mp);
 
@@ -135,7 +127,7 @@ public class EntrenadorApplication {
 
 
 			mensaje="    se envio bien!!!";
-
+*/
 
 		} catch(Exception e){
 			System.out.println("No se pudo por esto:"+e.getMessage());
@@ -144,8 +136,48 @@ public class EntrenadorApplication {
 		}
 
 
-*/
 
 
+
+	}
+}
+
+class EmailUtil {
+
+	/**
+	 * Utility method to send simple HTML email
+	 * @param session
+	 * @param toEmail
+	 * @param subject
+	 * @param body
+	 */
+	public static void sendEmail(Session session, String toEmail, String subject, String body){
+		try
+		{
+			MimeMessage msg = new MimeMessage(session);
+			//set message headers
+			msg.addHeader("Content-type", "text/HTML; charset=UTF-8");
+			msg.addHeader("format", "flowed");
+			msg.addHeader("Content-Transfer-Encoding", "8bit");
+
+			msg.setFrom(new InternetAddress("egel@sierraguadalupe.org", "Egel Sierra Guadalupe"));
+
+			msg.setReplyTo(InternetAddress.parse("egel@sierraguadalupe.org", false));
+
+			msg.setSubject(subject, "UTF-8");
+
+			msg.setText(body, "UTF-8");
+
+			msg.setSentDate(new Date());
+
+			msg.setRecipients(Message.RecipientType.TO, InternetAddress.parse(toEmail, false));
+			System.out.println("Message is ready");
+			Transport.send(msg);
+
+			System.out.println("EMail Sent Successfully!!");
+		}
+		catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 }

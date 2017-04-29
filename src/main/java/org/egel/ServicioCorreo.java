@@ -43,16 +43,16 @@ public class ServicioCorreo {
         MimeMessage message = mailSender.createMimeMessage();
         MimeMessageHelper helper = new MimeMessageHelper(message,true,"UTF-8");
 
-      //  helper.setTo(new String[]{"janunezp@mail.unitec.mx"/*"aalbarra@mail.unitec.mx"*/,"rapidclimate@outlook.com"});
+        helper.setTo(new String[]{/*"janunezp@mail.unitec.mx"/*"aalbarra@mail.unitec.mx",*/"rapidclimate@outlook.com"});
 
-        // message.setTo("rapidclimate@outlook.com");
-       // helper.setFrom("rapidclimate@gmail.com", alumno);
-     //   helper.setSubject("Resultado Egel");
-       // helper.setText("<h1>Hola crayola</h1><p>"+mensaje+"</p><br><img src='cid:miImagen'>", true);
-     //   helper.setText("<h2>Resultado del examen de "+ VaadinSession.getCurrent().getAttribute("nombre")+" "+
-      //          VaadinSession.getCurrent().getAttribute("paterno")+" cuenta: "+
-        //        VaadinSession.getCurrent().getAttribute("cuenta")+"</h2><h3>Tema EGEL:"+ VaadinSession.getCurrent().getAttribute("tema")+"</h3><p>"+mensaje+"</p>", true);
-        //
+       //  message.setTo("rapidclimate@outlook.com");
+        helper.setFrom("egel@sierragudalupe.org", alumno);
+      helper.setSubject("Resultado Egel");
+        helper.setText("<h1>Hola crayola</h1><p>"+mensaje+"</p><br><img src='cid:miImagen'>", true);
+       helper.setText("<h2>Resultado del examen de "+ VaadinSession.getCurrent().getAttribute("nombre")+" "+
+               VaadinSession.getCurrent().getAttribute("paterno")+" cuenta: "+
+                VaadinSession.getCurrent().getAttribute("cuenta")+"</h2><h3>Tema EGEL:"+ VaadinSession.getCurrent().getAttribute("tema")+"</h3><p>"+mensaje+"</p>", true);
+
        // getClass().getResource("egel.png");
 
 //El siguiente es para vaadin
@@ -71,7 +71,7 @@ public class ServicioCorreo {
 
 
         try{
-         //   this.mailSender.send(message);
+            this.mailSender.send(message);
         }
         catch (MailException ex) {
             // simply log it and go on...
