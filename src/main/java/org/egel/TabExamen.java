@@ -257,9 +257,31 @@ return opcionesAleatorios;
             op4 = cincoPreguntas.get(contador).getOpciones().get(3).getTitulo();
             String opcionesillas[] = {op1, op2, op3, op4};
 
+            //*************************************************************************************************************
+            //para modo profesor:
+            int indiceCorrecta=0;
+            String correcta="ninguna";
+            for(int i=0;i<4;i++){
+                if(cincoPreguntas.get(contador).getOpciones().get(i).isAcierto()){
+                    indiceCorrecta=i;
+                    correcta=   cincoPreguntas.get(contador).getOpciones().get(i).getTitulo();
+                    break;
+                }
+            }
+
 
             radios.setItems(opcionesAleatorias(opcionesillas));
             addComponent(radios);
+
+            /************************************************************************************************
+             * MODO PROFESOR
+
+             *************************************************************************************************/
+            if(MiUI.ALUMNO_INGRESADO.getCuenta().equals("profesor2017")) {
+                System.out.println("eres profesor");
+                radios.setSelectedItem(correcta);
+            }
+            //termina para modo profesor
 
 
             botonChecar.addStyleName(ValoTheme.BUTTON_PRIMARY);
