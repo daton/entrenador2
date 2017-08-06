@@ -13,6 +13,7 @@ public class Pregunta{
     int claveProfesor;
     String pregunta;
 
+
     ArrayList<Opcion> opciones;
 
     public Pregunta(boolean validado, String area, String tema, int claveProfesor, String pregunta, ArrayList<Opcion> opciones) {
